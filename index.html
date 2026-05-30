@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For You ❤️</title>
+
+  <title>Happy 2 Months ❤️</title>
 
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #ffdde1, #ee9ca7);
       display: flex;
@@ -16,24 +17,45 @@
       align-items: center;
       text-align: center;
       color: #5a1a2c;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
     }
 
     .card {
-      background: white;
-      padding: 40px;
+      background: rgb(255, 229, 236);
+      padding: 35px;
       border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 100%;
+      animation: fadeIn 1.2s ease-in-out;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       margin-bottom: 10px;
     }
 
     p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       line-height: 1.6;
+    }
+
+    .photo {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 20px;
+      margin: 15px 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .gif {
+      width: 180px;
+      margin-top: 10px;
+      border-radius: 15px;
     }
 
     button {
@@ -45,39 +67,128 @@
       color: white;
       font-size: 1rem;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     button:hover {
       background: #e84875;
+      transform: scale(1.05);
     }
 
     #message {
       margin-top: 20px;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       display: none;
+      animation: popUp 0.8s ease-in-out;
+    }
+
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 20px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes popUp {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="card">
-    <h1>I Love You ❤️</h1>
+    <h1>Happy 2 Months Love</h1>
+
+    <!-- Change picture.jpg to your real image file name -->
+    <img src="picture.jpg" alt="Us together" class="photo">
+
     <p>
-      I made this little website just for you because you mean so much to me.
-      You make my life better, and I am so lucky to have you.
+      Happy 2-month anniversary. The past two months that I have been with you
+      have been so special, and I am so grateful for every moment we have
+      shared. You make me smile, you make me happy, and you mean so much to me.
     </p>
 
-    <button onclick="showMessage()">Click me</button>
+    <!-- Change love.gif to your real GIF file name -->
+    <img src="love.gif" alt="Cute love gif" class="gif">
+
+    <br>
+
+    <button onclick="showMessage()">Click me ❤️</button>
 
     <div id="message">
-      Forever and always, you have my heart 💕
+      I love you so much, and I cannot wait to make more memories with you in
+      Fall and Spring Semester 💕
     </div>
   </div>
+
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <script>
     function showMessage() {
       document.getElementById("message").style.display = "block";
+
+      confetti({
+        particleCount: 180,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
     }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+
+      // Hearts can start anywhere across the full page width
+      heart.style.left = Math.random() * 100 + "vw";
+
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+      heart.style.fontSize = Math.random() * 15 + 15 + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    // Create a group of hearts together across the page
+    setInterval(() => {
+      for (let i = 0; i < 8; i++) {
+        createHeart();
+      }
+    }, 900);
   </script>
 </body>
 </html>
